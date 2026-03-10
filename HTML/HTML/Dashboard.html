@@ -8,13 +8,17 @@
 </head>
 
 <body>
-    <div class="header-container">
-        <img src="../../Images/logo.png" alt="Teamgeist HR Logo" class="logo">
-        <h1>Mitarbeiterverwaltung</h1>
+    <div class="header-container" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center;">
+            <img src="../../Images/logo.png" alt="Teamgeist HR Logo" class="logo">
+            <h1>Mitarbeiterverwaltung</h1>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <button onclick="window.location.href='Homepage.html'"
+                style="margin-bottom: 0; margin-right: 0;">Ausloggen</button>
+        </div>
     </div>
-
-    <button onclick="window.location.href='Homepage.html'">Zurück zur Startseite</button>
-    <br><br><br>
+    <br><br>
 
     <button onclick="document.getElementById('popupAdd').showModal()">Mitarbeiter hinzufügen</button>
     <button onclick="document.getElementById('popupEdit').showModal()">Mitarbeiter bearbeiten</button>

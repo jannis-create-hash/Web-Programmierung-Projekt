@@ -8,7 +8,9 @@
 
 body {
     font-family: 'Oswald', sans-serif;
-    background-color: #2e2c2c;
+    background-color: #000000;
+    background-image: radial-gradient(circle at 50% -20%, rgba(37, 99, 255, 0.25), transparent 70%);
+    background-attachment: fixed;
     color: #e0e0e0;
     margin: 40px;
 }
@@ -32,7 +34,7 @@ body {
 }
 
 button {
-    background-color: #0764f9;
+    background-color: #2563FF;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -47,7 +49,7 @@ button {
 }
 
 button:hover {
-    background-color: #619af7;
+    background-color: #497FFF;
 }
 
 input {
@@ -89,10 +91,12 @@ dialog::backdrop {
     font-size: 90px;
     margin: 0;
     font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    letter-spacing: -2px;
 }
 
 .home-titel-highlight {
-    color: #0400ff;
+    color: #2563FF;
 }
 
 .homepage-subtitle {
@@ -107,7 +111,9 @@ dialog::backdrop {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #2e2c2c;
+    background-color: #000000;
+    background-image: radial-gradient(circle at 50% 50%, rgba(37, 99, 255, 0.15), transparent 60%);
+    background-attachment: fixed;
 }
 
 .auth-box.modern {
@@ -137,7 +143,7 @@ dialog::backdrop {
 }
 
 .auth-logo-highlight {
-    color: #0400ff;
+    color: #2563FF;
 }
 
 .auth-kopf {
@@ -179,7 +185,7 @@ dialog::backdrop {
 
 .auth-submit-button {
     width: 100%;
-    background-color: #0400ff;
+    background-color: #2563FF;
     color: white;
     padding: 15px;
     font-size: 16px;
@@ -192,7 +198,7 @@ dialog::backdrop {
 }
 
 .auth-submit-button:hover {
-    background-color: #3b36fa;
+    background-color: #497FFF;
 }
 
 .auth-fussnote {
@@ -203,7 +209,7 @@ dialog::backdrop {
 }
 
 .auth-link {
-    color: #0400ff;
+    color: #2563FF;
     text-decoration: none;
     font-weight: bold;
 }
