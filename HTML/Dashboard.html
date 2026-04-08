@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teamgeist HR - Mitarbeiterverwaltung</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="header-container" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center;">
+            <img src="../Images/logo.png" alt="Teamgeist HR Logo" class="logo">
+            <h1>Mitarbeiterverwaltung</h1>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <button onclick="handleLogoff()" style="margin-bottom: 0; margin-right: 0;">Ausloggen</button>
+        </div>
+    </div>
+    <br><br>
+
+    <button onclick="document.getElementById('popupAdd').showModal()">Mitarbeiter hinzufügen</button>
+
+    <br><br>
+
+    <!-- Mitarbeiter Tabelle -->
+    <table id="mitarbeiter-tabelle" border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Abteilung</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td colspan="5">Lade Mitarbeiter...</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Dialog: Mitarbeiter hinzufügen -->
+    <dialog id="popupAdd">
+        <h2>Neuen Mitarbeiter anlegen</h2>
+        <table>
+            <tr>
+                <td>Vorname:</td>
+                <td><input type="text" id="add-vorname" required></td>
+            </tr>
+            <tr>
+                <td>Nachname:</td>
+                <td><input type="text" id="add-nachname" required></td>
+            </tr>
+            <tr>
+                <td>Abteilung:</td>
+                <td><input type="text" id="add-abteilung"></td>
+            </tr>
+        </table>
+        <br>
+        <button onclick="addMitarbeiter()">Speichern</button>
+        <button type="button" onclick="document.getElementById('popupAdd').close()">Abbrechen</button>
+    </dialog>
+
+    <!-- Dialog: Mitarbeiter bearbeiten -->
+    <dialog id="popupEdit">
+        <h2>Mitarbeiterdaten bearbeiten</h2>
+        <input type="hidden" id="edit-id">
+        <table>
+            <tr>
+                <td>Vorname:</td>
+                <td><input type="text" id="edit-vorname" required></td>
+            </tr>
+            <tr>
+                <td>Nachname:</td>
+                <td><input type="text" id="edit-nachname" required></td>
+            </tr>
+            <tr>
+                <td>Abteilung:</td>
+                <td><input type="text" id="edit-abteilung"></td>
+            </tr>
+        </table>
+        <br>
+        <button onclick="editMitarbeiter()">Speichern</button>
+        <button type="button" onclick="document.getElementById('popupEdit').close()">Abbrechen</button>
+    </dialog>
+
+    <!-- Dialog: Mitarbeiter löschen -->
+    <dialog id="popupDelete">
+        <h2>Mitarbeiter löschen</h2>
+        <input type="hidden" id="delete-id">
+        <p>Möchten Sie diesen Mitarbeiter wirklich löschen?</p>
+        <p style="color: red;">Achtung: Diese Aktion kann nicht rückgängig gemacht werden!</p>
+        <button onclick="confirmDelete()">Endgültig löschen</button>
+        <button type="button" onclick="document.getElementById('popupDelete').close()">Abbrechen</button>
+    </dialog>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>

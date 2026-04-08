@@ -38,7 +38,7 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
@@ -132,8 +132,8 @@ dialog::backdrop {
 }
 
 .auth-logo-img {
-    height: 35px;
-    margin-right: 15px;
+    height: 70px;
+    margin-right: 5px;
 }
 
 .auth-logo-text {

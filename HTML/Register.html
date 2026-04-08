@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="../HTML/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="auth-body">
-    <form action="" class="auth-box modern">
+    <form action="" class="auth-box modern" onsubmit="handleRegister(); return false;">
         <div class="auth-logo-container">
-            <img src="../../Images/logo.png" alt="Teamgeist Logo" class="auth-logo-img">
+            <img src="../Images/logo.png" alt="Teamgeist Logo" class="auth-logo-img">
             <h2 class="auth-logo-text">Team<span class="auth-logo-highlight">geist</span></h2>
         </div>
 
@@ -26,15 +26,21 @@
         <label for="password" class="auth-label">Passwort</label>
         <input type="password" id="password" name="password" required class="auth-input-field last">
 
+        <p id="error-msg" style="color: red; display: none;"></p>
+
         <button type="submit" class="auth-submit-button">
             Registrieren
         </button>
 
         <div class="auth-fussnote">
             Bereits ein Konto? <a href="LogIn.html" class="auth-link">Anmelden</a> &nbsp;|&nbsp;
-            <a href="../HTML/Homepage.html" class="auth-link">&larr; Zurück</a>
+            <a href="Homepage.html" class="auth-link">&larr; Zurück</a>
         </div>
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
 </body>
 
 </html>
