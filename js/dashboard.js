@@ -1,4 +1,7 @@
 var token = localStorage.getItem('token');
+var alleMitarbeiter = [];
+var sortSpalte = 'id';
+var sortAufsteigend = true;
 
 // Nicht eingeloggt → zurück zum Login
 if (!token) {
@@ -16,20 +19,9 @@ function loadMitarbeiter() {
         headers:     { 'Authorization': 'Bearer ' + token },
         success: function (data) {
             console.log('Mitarbeiter geladen');
-            var rows = '';
-            $.each(data.mitarbeiter, function (index, m) {
-                rows += '<tr>' +
-                    '<td>' + m.id       + '</td>' +
-                    '<td>' + m.vorname  + '</td>' +
-                    '<td>' + m.nachname + '</td>' +
-                    '<td>' + m.abteilung + '</td>' +
-                    '<td>' +
-                        '<button onclick="openEdit(' + m.id + ',\'' + m.vorname + '\',\'' + m.nachname + '\',\'' + m.abteilung + '\')">Bearbeiten</button> ' +
-                        '<button onclick="deleteMitarbeiter(' + m.id + ')">Löschen</button>' +
-                    '</td>' +
-                '</tr>';
-            });
-            $('#mitarbeiter-tabelle tbody').html(rows);
+            alleMitarbeiter = data.mitarbeiter;
+            $('#stats-anzahl').text(alleMitarbeiter.length);
+            tabelleRendern(alleMitarbeiter);
         },
         error: function (xhr) {
             console.log('Fehler beim Laden: ' + xhr.status);
@@ -127,6 +119,60 @@ function confirmDelete() {
             alert('Fehler beim Löschen');
         }
     });
+}
+
+// ── Tabelle rendern ───────────────────────────────────────────────────────────
+
+function tabelleRendern(liste) {
+    var rows = '';
+    if (liste.length === 0) {
+        rows = '<tr><td colspan="5">Keine Mitarbeiter gefunden.</td></tr>';
+    } else {
+        $.each(liste, function (index, m) {
+            rows += '<tr>' +
+                '<td>' + m.id + '</td>' +
+                '<td>' + m.vorname + '</td>' +
+                '<td>' + m.nachname + '</td>' +
+                '<td>' + m.abteilung + '</td>' +
+                '<td>' +
+                    '<button onclick="openEdit(' + m.id + ',\'' + m.vorname + '\',\'' + m.nachname + '\',\'' + m.abteilung + '\')">Bearbeiten</button>' +
+                    '<button onclick="deleteMitarbeiter(' + m.id + ')" style="background-color:#dc2626;">Löschen</button>' +
+                '</td>' +
+            '</tr>';
+        });
+    }
+    $('#mitarbeiter-tabelle tbody').html(rows);
+}
+
+// ── Suche / Filter ────────────────────────────────────────────────────────────
+
+function filterTabelle() {
+    var suche = $('#suchfeld').val().toLowerCase();
+    var gefiltert = alleMitarbeiter.filter(function (m) {
+        return m.vorname.toLowerCase().includes(suche) ||
+               m.nachname.toLowerCase().includes(suche) ||
+               m.abteilung.toLowerCase().includes(suche);
+    });
+    tabelleRendern(gefiltert);
+}
+
+// ── Sortierung ────────────────────────────────────────────────────────────────
+
+function sortieren(spalte) {
+    if (sortSpalte === spalte) {
+        sortAufsteigend = !sortAufsteigend;
+    } else {
+        sortSpalte = spalte;
+        sortAufsteigend = true;
+    }
+    var sortiert = alleMitarbeiter.slice().sort(function (a, b) {
+        var x = String(a[spalte]).toLowerCase();
+        var y = String(b[spalte]).toLowerCase();
+        if (x < y) return sortAufsteigend ? -1 : 1;
+        if (x > y) return sortAufsteigend ? 1 : -1;
+        return 0;
+    });
+    tabelleRendern(sortiert);
 }
 
 // ── Start ─────────────────────────────────────────────────────────────────────

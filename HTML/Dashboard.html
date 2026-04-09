@@ -19,18 +19,28 @@
     </div>
     <br><br>
 
-    <button onclick="document.getElementById('popupAdd').showModal()">Mitarbeiter hinzufügen</button>
+    <!-- Statistik-Karte -->
+    <div class="stats-container">
+        <div class="stats-card">
+            <span class="stats-zahl" id="stats-anzahl">—</span>
+            <span class="stats-label">Mitarbeiter gesamt</span>
+        </div>
+    </div>
 
-    <br><br>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <input type="text" id="suchfeld" placeholder="Suchen nach Name oder Abteilung..." oninput="filterTabelle()">
+        <button onclick="document.getElementById('popupAdd').showModal()">+ Mitarbeiter hinzufügen</button>
+    </div>
 
     <!-- Mitarbeiter Tabelle -->
-    <table id="mitarbeiter-tabelle" border="1" cellpadding="8" cellspacing="0">
+    <table id="mitarbeiter-tabelle">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-                <th>Abteilung</th>
+                <th onclick="sortieren('id')" class="sortierbar">ID <span class="sort-pfeil">↕</span></th>
+                <th onclick="sortieren('vorname')" class="sortierbar">Vorname <span class="sort-pfeil">↕</span></th>
+                <th onclick="sortieren('nachname')" class="sortierbar">Nachname <span class="sort-pfeil">↕</span></th>
+                <th onclick="sortieren('abteilung')" class="sortierbar">Abteilung <span class="sort-pfeil">↕</span></th>
                 <th>Aktionen</th>
             </tr>
         </thead>
